@@ -19,3 +19,7 @@ d1 = [1,2,3,4]
 d2 = 1,2,3,4
 print(sys.getsizeof(d1))
 print(sys.getsizeof(d2))
+
+unpacking = 1,2,3
+x, y, z = unpacking
+print(x,y,z)

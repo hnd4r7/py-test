@@ -107,3 +107,4 @@ def f(ham: str, eggs: str = 'eggs') -> str:
     #  return ham + ' and ' + eggs
 f('spam')
 print(f('jh','jkj'))
+
