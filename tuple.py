@@ -23,3 +23,10 @@ print(sys.getsizeof(d2))
 unpacking = 1,2,3
 x, y, z = unpacking
 print(x,y,z)
+
+import timeit
+time_test = timeit.timeit(stmt="print('sll')",number=10)
+list_test = timeit.timeit(stmt="[1,2,3,4,5]",number=1000000)
+tuple_test = timeit.timeit(stmt="(1,2,3,4,5)",number=1000000)
+print(list_test)
+print(tuple_test)
