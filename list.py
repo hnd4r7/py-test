@@ -5,6 +5,15 @@ a[1:3] = [1,1,1]
 a[1:3] = []
 print(a)
 
+b = [1, 2, 3]
+# c = [1,2,3, ..b]
+c = [4, 5, 6]
+
+b.extend(c)
+print("extend array: ", b)
+print("array + :",b + c)
+print("spread array", [*b, *c])
+
 
 a, b = 0, 1
 while a < 10:

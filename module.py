@@ -74,8 +74,12 @@ Bar()
 Baz()
 print(test)
 
+import package
+print("package path:", package.__path__)
+
 # print(l)
 from basic import *
 print(l)
 print(xxx) # -> basic -> cal 级联引用
 print(os.name)  # -> basic -> os 级联引用
+
