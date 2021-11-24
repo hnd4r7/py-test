@@ -3,4 +3,3 @@ with open('string.py') as f:
     print(data)
 
 print(f.closed)
-    
