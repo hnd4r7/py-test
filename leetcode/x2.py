@@ -1,6 +1,15 @@
 import collections
 from typing import List
 
+print(None == None)
+
+q = [1]
+while q:
+    for _ in range(len(q)):
+        print(len(q))
+        x = q.pop()
+        q.append(x+1)
+
 # n = int(input())
 # ans = 0
 # for _ in range(n):
@@ -14,9 +23,6 @@ for i in range(len(x)):
     x[i] -= 1
 print(x)
 exit()
-
-
-
 
 x = []
 y = x[0] if len(x) > 0 else 0

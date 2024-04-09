@@ -1,5 +1,50 @@
 import collections
 import heapq
+from bisect import bisect_right
+from typing import List
+
+x = [1,2,3,4,7,9]
+def find(nums: List[int], x: int):# -> tuple[int, int]:
+    l, r = 0, len(nums)-1
+    while l <= r: # 闭区间搜索区间判定条件是
+        mid = (l+r)//2
+        if nums[mid] > x:
+            r = mid
+        else:
+            l = mid+1
+    return nums[l], nums[r]
+
+def find(nums: List[int], x: int):# -> tuple[int, int]:
+    l, r = 0, len(nums)
+    while l < r: # 搜索区间判定条件是
+        mid = (l+r)//2
+        if nums[mid] > x:
+            r = mid
+        else:
+            l = mid+1
+    return nums[l], nums[r]
+
+l, r = find(x, 8)
+print(l, r)
+exit()
+
+
+class Solution:
+    def maximumCandies(self, candies: List[int], k: int) -> int:
+         # 由于 x 越大 sum 越小，而 key 需要一个增函数（非减），因此对 sum 取相反数从而满足要求
+        return bisect_right(range(sum(candies) // k), -k, key=lambda x: -sum(v // (x + 1) for v in candies))
+
+class Node:
+    pass
+
+a = Node()
+b = a
+print(b is a )
+
+x = set()
+x.add(1)
+
+print(1 in x)
 
 x = [2, 3, 1, 4, 5]
 y = [10,20,30]
