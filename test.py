@@ -1,5 +1,7 @@
 import os
 from time import sleep
+import sys
+print(sys.version_info[0])
 
 sleep(10)
 

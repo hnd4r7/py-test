@@ -1,14 +1,10 @@
 import collections
+import math
 from typing import List
 
-print(None == None)
-
-q = [1]
-while q:
-    for _ in range(len(q)):
-        print(len(q))
-        x = q.pop()
-        q.append(x+1)
+x = [1,2,3,4]
+x = math.inf
+print(type(x))
 
 # n = int(input())
 # ans = 0
