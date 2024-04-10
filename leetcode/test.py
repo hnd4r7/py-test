@@ -4,6 +4,14 @@ import heapq
 from bisect import bisect_right
 from typing import List
 
+
+x = [1,2,3]
+for i in range(len(x)):
+    print(i)
+    if i==1:
+        i-=1
+exit()
+
 def find(nums: List[int], x: int):# -> tuple[int, int]:
     l, r = 0, len(nums)-1
     while l <= r: # 闭区间搜索区间判定条件是
