@@ -7,47 +7,64 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
  
 public class Main {
-    
+    public static int[][] visited;
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String input_str = in.nextLine();
         String[] tmp2 = input_str.split(" ");
-        int count = 0;
-        int[] nums = new int[tmp2.length*2];
+        int[] nums = new int[tmp2.length];
         for (int i = 0; i < tmp2.length; i++) {  
             nums[i] = Integer.parseInt(tmp2[i]);
-            nums[i+tmp2.length] = Integer.parseInt(tmp2[i]);
-            count += 2;
         }
+        int m = nums[0]; 
+        int n = nums[1];
+        int k = nums[2]; 
  
-        int[] res = new int[count];
-        Deque<Integer> stack = new ArrayDeque<Integer>();
-        int i=0;
-        while(true){
-            if(i>=count){
-                //没有比它更小的数字的话，那就不赠送寿司，本身就是实际得到寿司的最大价格
-                while (!stack.isEmpty()) {
-                    int next = stack.pop();
-                    res[next] = nums[next];
-                }
-                String output_str= "";
-                //输出一半就行了
-                for (int k=0;k<count/2;k++){
-                    output_str += res[k] + " ";
-                }
-                System.out.println(output_str);
-                break;
-            } else {
-                //单调递减栈，套用下面的模板即可
-                //https://blog.csdn.net/qq_39445165/article/details/118467075
-                while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) {
-                    int next = stack.pop();
-                    res[next] = nums[next] + nums[i];
-                }
-                stack.push(i);
-            }
-            i+=1;
-        }
+        visited = new int[m][n];
+        System.out.println(dfs(0, 0, m,n,k));
  
     }
+ 
+    public static int dfs(int x, int y, int m, int n, int k) {
+        if (x < 0 || y < 0 || x >= m || y >= n) {
+            return 0;
+        }
+        if (visited[x][y]==1) {
+            return 0; 
+        }
+        int total_num = 0;
+        int xx = x;
+        int yy = y;
+        while (xx > 0) {
+            total_num += xx % 10; 
+            xx /= 10;
+        }
+ 
+        while (yy > 0) {
+            total_num += yy % 10; 
+            yy /= 10;
+        }
+        if(total_num>k){
+            return 0;
+        }
+ 
+        visited[x][y] = 1; 
+ 
+        int result = 1;
+        if(x+1 <=m){
+            result += dfs(x + 1, y, m,n,k);
+        }
+        if(x-1 >=0){
+            result += dfs(x - 1, y, m,n,k);
+        }
+        if(y+1 <=n){
+            result += dfs(x,y+1, m,n,k);
+        }
+        if(y-1 >=0){
+            result += dfs(x, y-1, m,n,k);
+        }
+ 
+        return result;
+    }
+ 
 }

@@ -3,7 +3,11 @@ import collections
 import heapq
 from bisect import bisect_right
 from bisect import bisect_left
+from itertools import pairwise
 from typing import List
+
+x = [1,2,4,3,4]
+print(set(map(sum, pairwise(x))))
 
 x = [[1,2],[3,5],[6,7],[6,10],[12,16]]
 y = [6,8]
