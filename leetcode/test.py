@@ -2,10 +2,16 @@ import bisect
 import collections
 import heapq
 from bisect import bisect_right
+from bisect import bisect_left
 from typing import List
 
+x = [[1,2],[3,5],[6,7],[6,10],[12,16]]
+y = [6,8]
 
-x = [1,2,3]
+x = [1,2,5]
+print(bisect_left(x,5))
+exit()
+
 for i in range(len(x)):
     print(i)
     if i==1:
