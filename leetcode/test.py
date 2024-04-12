@@ -6,7 +6,15 @@ from bisect import bisect_left
 from itertools import pairwise
 from typing import List
 
+
 x = [1,2,4,3,4]
+
+for i in range(len(x)):
+    if i == 2:
+        i += 1
+    print(x[i])
+exit()
+
 print(set(map(sum, pairwise(x))))
 
 x = [[1,2],[3,5],[6,7],[6,10],[12,16]]
