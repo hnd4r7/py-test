@@ -4,67 +4,44 @@ import java.util.stream.Stream;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
  
 public class Main {
-    public static int[][] visited;
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String input_str = in.nextLine();
-        String[] tmp2 = input_str.split(" ");
-        int[] nums = new int[tmp2.length];
-        for (int i = 0; i < tmp2.length; i++) {  
-            nums[i] = Integer.parseInt(tmp2[i]);
+        int[] files = Arrays.stream(in.nextLine().split(",")).mapToInt(Integer::parseInt).toArray();
+ 
+        Arrays.sort(files);
+        int left = 0;
+        int right = files.length + 1;
+ 
+        while (left < right){
+            int mid = (left + right)/2;
+            if(cal(mid, files)){
+                right = mid;
+            }else {
+                left = mid + 1;
+            }
         }
-        int m = nums[0]; 
-        int n = nums[1];
-        int k = nums[2]; 
- 
-        visited = new int[m][n];
-        System.out.println(dfs(0, 0, m,n,k));
- 
+        System.out.println(left);
     }
  
-    public static int dfs(int x, int y, int m, int n, int k) {
-        if (x < 0 || y < 0 || x >= m || y >= n) {
-            return 0;
-        }
-        if (visited[x][y]==1) {
-            return 0; 
-        }
-        int total_num = 0;
-        int xx = x;
-        int yy = y;
-        while (xx > 0) {
-            total_num += xx % 10; 
-            xx /= 10;
+    //
+    public static boolean cal(int mid, int[] files){
+        int[] nums = new int[mid];
+        for(int i=0; i<mid; i++){
+            nums[i] = 500;
         }
  
-        while (yy > 0) {
-            total_num += yy % 10; 
-            yy /= 10;
-        }
-        if(total_num>k){
-            return 0;
-        }
- 
-        visited[x][y] = 1; 
- 
-        int result = 1;
-        if(x+1 <=m){
-            result += dfs(x + 1, y, m,n,k);
-        }
-        if(x-1 >=0){
-            result += dfs(x - 1, y, m,n,k);
-        }
-        if(y+1 <=n){
-            result += dfs(x,y+1, m,n,k);
-        }
-        if(y-1 >=0){
-            result += dfs(x, y-1, m,n,k);
+        for(int i = files.length - 1; i>=0; i--){
+            int f = files[i];
+            Arrays.sort(nums);
+            if(nums[mid - 1] >= f ){
+                nums[mid - 1] -= f;
+            }else {
+                return false;
+            }
         }
  
-        return result;
+        return true;
     }
- 
 }

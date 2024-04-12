@@ -4,18 +4,23 @@ import heapq
 from bisect import bisect_right
 from bisect import bisect_left
 from itertools import pairwise
+import itertools
 from typing import List
 
 
+x = "123"
+x = x[1:]
+print(x)
+
+
 x = [1,2,4,3,4]
-
-for i in range(len(x)):
-    if i == 2:
-        i += 1
-    print(x[i])
-exit()
-
 print(set(map(sum, pairwise(x))))
+
+def compressString(self, S: str) -> str:
+       return min( S, "".join(k + str(len(list(grp))) for k, grp in itertools.groupby(S)), key=len)
+
+for k, g in itertools.groupby("aabcccccaaa"):
+    print(list(g))
 
 x = [[1,2],[3,5],[6,7],[6,10],[12,16]]
 y = [6,8]
