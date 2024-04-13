@@ -5,8 +5,16 @@ from bisect import bisect_right
 from bisect import bisect_left
 from itertools import pairwise
 import itertools
+import string
 from typing import List
 
+
+
+x = "32111888888"
+y = sorted(range(10), key = lambda i: x[i], reverse= True)
+print(y)
+
+string.ascii_lowercase
 
 x = "123"
 x = x[1:]
