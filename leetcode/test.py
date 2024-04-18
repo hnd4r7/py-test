@@ -1,14 +1,41 @@
-import bisect
 import collections
-import heapq
+from heapq import *
 from bisect import bisect_right
 from bisect import bisect_left
 from itertools import pairwise
+from collections import Counter
 import itertools
 import string
 from typing import List
 
+"""
+123
+384
+535
+"""
 
+a = {(1,2)}
+print(type(a))
+exit()
+
+x = -1
+print(3 + -x)
+exit()
+
+heapq.heapify()
+r = [4,4,2,4,4]
+x = Counter(r).items()
+print(x)
+for a, b in x:
+    print(a, b)
+
+print(max(Counter(r).values()))
+
+print('aba' == 'aba')
+
+q = collections.deque((7, 1))
+x = q.popleft()
+print(x)
 
 x = "32111888888"
 y = sorted(range(10), key = lambda i: x[i], reverse= True)
