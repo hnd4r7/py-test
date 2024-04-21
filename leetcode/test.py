@@ -5,6 +5,7 @@ from bisect import bisect_left
 from itertools import pairwise
 from collections import Counter
 import itertools
+import math
 import string
 from typing import List
 
@@ -13,6 +14,48 @@ from typing import List
 384
 535
 """
+
+print(True+True)
+
+exit()
+x = [1,2,4,3,4]
+print(set(map(sum, pairwise(x))))
+
+s = sorted([2,1,3], key = lambda x: x)
+print(s)
+
+float('inf')
+float(math.inf)
+
+def x()->bool:
+    return False
+
+class Node:
+    def __init__(self,val):
+        self.val = val
+    
+Node.__lt__ = lambda a, b: a.val < b.val    
+
+n = Node(3)
+n2 = Node(4)
+print(n > n2)
+
+x = int("8f", 16)
+print(x)
+
+a = [[]] + [[]] + [[]] 
+a[0].append(1)
+print(a)
+
+
+a = [[]] * 4
+a[0].append(1)
+print(a)
+
+a[0].append('2')
+print(type(a[1]))
+print(a)
+exit()
 
 a = {(1,2)}
 print(type(a))
@@ -48,8 +91,6 @@ x = x[1:]
 print(x)
 
 
-x = [1,2,4,3,4]
-print(set(map(sum, pairwise(x))))
 
 def compressString(self, S: str) -> str:
        return min( S, "".join(k + str(len(list(grp))) for k, grp in itertools.groupby(S)), key=len)
