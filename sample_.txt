@@ -1,0 +1,6 @@
+# content of test_example.txt
+
+hello this is a doctest
+>>> x = 3
+>>> x
+3

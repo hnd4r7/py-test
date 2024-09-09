@@ -1,1 +1,3 @@
+import heapq
+
 tasks = input()

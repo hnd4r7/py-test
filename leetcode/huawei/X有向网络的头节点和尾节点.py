@@ -17,3 +17,4 @@ def dfs(i, path):
         dfs(t)
         path.remove(t)
 dfs(0, {})
+# 入度为0
