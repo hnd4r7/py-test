@@ -1,3 +1,5 @@
+from dataclasses import Field
+from typing import Literal, Optional, Union
 import uuid
 import requests
 from datetime import date, datetime, timedelta
@@ -7,7 +9,7 @@ from enum import Enum
 # fetch the raw JSON data from Github
 url = 'https://raw.githubusercontent.com/bugbytes-io/datasets/master/students_v2.json'
 data = requests.get(url).json()
-
+print(data)
 
 # define an Enum of acceptable Department values
 class DepartmentEnum(Enum):
@@ -48,9 +50,38 @@ class Student(BaseModel):
             raise ValueError("Too young to enrol, sorry!")
         return value
 
+# define an Enum of acceptable Department values
+class DepartmentEnum(Enum):
+    ARTS_AND_HUMANITIES = 'Arts and Humanities'
+    LIFE_SCIENCES = 'Life Sciences'
+    SCIENCE_AND_ENGINEERING = 'Science and Engineering'
+
+
+# Pydantic model to outline structure/types of Modules
+class Module(BaseModel):
+    id: Union[uuid.UUID, int]
+    name: str
+    professor: str
+    credits: Literal[10,20]
+    registration_code: str
+
+
+# Pydantic model to outline structure/types of Students (including nested model)
+class Student(BaseModel):
+    id: uuid.UUID
+    student_name: str = Field(alias="name")
+    date_of_birth: date = Field(default_factory=lambda: datetime.today().date())
+    GPA: confloat(ge=0, le=4)
+    course: Optional[str]
+    department: DepartmentEnum
+    modules: list[Module] = Field(default=[])
+
+    class Config:
+        use_enum_values = True
 
 # Iterate over each student record
 for student in data:
     # create Pydantic model object by unpacking key/val pairs from our JSON dict as arguments 
     model = Student(**student)
+    model.modules[3]
     print(model)
