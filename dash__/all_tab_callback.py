@@ -58,7 +58,7 @@ all_tab_ids = find_all_tab_ids(app.layout)
 
 # Create a single callback that handles all tabs
 @callback(
-    [Output(f"{tab_id}-content", "children") for tab_id in all_tab_ids],
+    # [Output(f"{tab_id}-content", "children") for tab_id in all_tab_ids],
     [Input(tab_id, "value") for tab_id in all_tab_ids],
     prevent_initial_call=True,
 )
@@ -81,9 +81,7 @@ def update_all_tabs(*args):
     # Find which tab was triggered and update its content
     for i, tab_id in enumerate(all_tab_ids):
         if tab_id == triggered_id:
-            outputs[i] = f"You've selected {selected_value} from {triggered_id}"
-
-    return outputs
+            print(f"You've selected {selected_value} from {triggered_id}")
 
 
 if __name__ == "__main__":
